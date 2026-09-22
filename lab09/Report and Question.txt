@@ -1,0 +1,15 @@
+COE67-222 Operating Systems - Lab 09 Report
+Name: Takdanai Niyomsap
+Student ID: 67122382
+
+1. Inodes and Metadata:
+In the `inode_inspector.py` script, we printed the "Inode Number". If you rename the file using the Linux `mv` command, will the Inode Number change? Why or why not? (Hint: Think about how the OS separates the file name from the actual data).
+ANS : ไม่เปลี่ยนครับ เพราะว่าเมื่อมีการเปลี่ยนชื่อไฟล์จากคำสั่ง mv Inode Number จะยังคงเดิม เพราะระบบปฏิบัติการแยกชื่อไฟล์ออกจากข้อมูลจริงของไฟล์ การ Rename จะเปลี่ยนเพียงชื่อ ไฟล์ แต่ Inode ยังคงชี้ไปยังข้อมูลของไฟล์เดิม
+
+2. POSIX Permissions:
+If you want to set a file's permission so that the Owner has Read/Write/Execute (7), the Group has Read/Execute (5), and Others have absolutely no access (0), what would be the 3-digit octal number you pass into `os.chmod()`? 
+ANS : คำตอบจาก ทดลอง 750 หมายความว่า Owner อ่าน และ เขียน จากนั้นก็รัน ได้ 7 , Group นั้นสามารถอ่าน และ รัน ได้ 5 , และ other ไม่มีสิทธิ์ที่จะอ่านและเขียน = 0 ส่วนตัวเลขที่ได้มาจาก ค่า read write execute แต่ที่ได้ 0  คือไม่มีสิทธิ์อ่านและเขียน 
+
+3. The AI Context:
+Why is it safer to rely on Operating System file permissions (like `os.chmod(0o444)`) to protect production model weights rather than relying solely on application-level logic or Python try-except blocks?
+ANS : มึความปลอดภัยกว่า เพราะ Premission ระดับ OS ถูกควบคุมจาก Operating System kernel ดังนั้น โปรแกรมจะมี Bug หรือ พยายามเขียนไฟล์ Model โดยไม่ได้ตั้งใจ OS ก็สามารถยล็อกการเขียนได้ และ ในขณะที่ try_except ของ python มีหน้าเพื่อจัดการ Error หลังจากเกิดข้อผิดพลาดและไม่ได้ทำหน้าที่ควบคุมสิทธิ์การเข้าถึงไฟล์โดยตรง

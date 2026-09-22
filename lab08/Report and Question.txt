@@ -1,0 +1,15 @@
+COE67-222 Operating Systems - Lab 08 Report
+Name: Takdanai Niyomsap 
+Student ID: 67122382
+
+1. Disk Scheduling (Phase 2):
+Looking at the output of `disk_scheduler.py`, why did the SCAN algorithm result in a significantly lower "Total Head Movement" compared to FCFS? Explain the logic behind the Elevator behavior.
+ANS : SCAN มี Total Head Movement ที่ต่ำกว่า FCFS เพราะ SCAN ทำงานเหมือน ลิฟต์ โดยหัวอ่านจะเคลื่อนที่ไปในทิศทางเดียวและ Request ที่อยู่ระหว่างทาง จากนั้นจึงเปลี่ยนทิศทาง ทำให้ลดการเคลื่อนที่ไปมาและช่วยลดระยะทางรวมของหัวอ่าน ในการ test ของผม SCAN ใช้ 331 cylinders เทียบกับ FCFS ที่ 640 cylinders
+
+2. I/O Bound Concept:
+If an Operating System is described as being "I/O Bound" during a task, what does that actually mean for the CPU? Is the CPU at 100% usage or is it mostly idle? Why?
+ANS : สำหรับในส่วน I/O Bound คือ งานใช้เวลาส่วนใหญ่สำหรับการรอ I/O Disk หรือ Network มากกว่าการประมวลผลของ CPU ทำให้ CPU นั้น ไม่ได้ใช้งาน 100% และ อยู่ในสถานะ Idle ในการรอ I/O เสร็จ
+
+3. AI Industry Connection (Phase 3):
+Explain why storing an AI image dataset as 1,000,000 separate `.jpg` files causes high I/O overhead and GPU starvation compared to packing them into a single sequential binary format (e.g., TFRecord, WebDataset, or HDF5).
+ANS :ในการเก็บ Dataset เป็นไฟล์ .jpg จำนวน 1,000,000 ไฟล์ ทำให้เกิด I/O Overhead สูง เพราะระบบต้องเปิดอ่าน และ ต้องปิดไฟล์ในจำนวนมาก รวมถึงต้องการ File Metadata และ Disk Seek หลายครั้ง ทำให้ข้อมูลส่งไปยัง GPU ไม่ทันและเกิด GPU Starvation หรือ GPU ต้องการรอข้อมูล และในการรวมไฟล์ แบบ Sequential ทำให้ช่วยลดจำนวน File I/O และทำให้โหลดข้อมูลต่อเนื่องได้เร็วขึ้น และสามารถส่งข้อมูลให้ GPU ได้สม่ำเสมอ และใช้ GPU ได้อย่างมีประสิทธิภาพ

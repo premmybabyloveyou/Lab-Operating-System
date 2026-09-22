@@ -1,0 +1,12 @@
+COE67-222 Operating Systems - Lab 10 Report (Final)
+Name: Takadanai Niyomsap 
+Student ID: 67122382
+
+1. The Role of the Operating System:
+In this mini-project, our Python script simulated the major responsibilities of an Operating System. 
+Match the specific code behavior in `ultimate_cluster_os.py` to the corresponding OS concept you learned throughout the semester:
+ANS : เป็นการที่ระบบจำลองการจัดการ ไฟล์และสิทธิ์การเข้าถึง โดยที่จะพยายามเข้าถึงไฟล์ secret_keys.txt แต่ workload D ทำงานล้มเหลว เพราะไม่พบไฟล์ และ ไม่มีสิทธิ์ในการเข้าถึงไฟล์ แสดงให้เห็นว่า OS มีหน้าที่จัดการไฟล์และควบคุมสิทธิ์การเข้าถึงของแต่ละ Process เพื่อป้องกันการเข้าถึงไฟล์โดยไม่ได้รับอนุญาต
+
+- File System & Permissions (Lab 9): 
+  [Explain which line of code simulated this and why Workload D failed]
+File System & Permissions จำลองด้วยบรรทัด os.chmod(secure_file, 0o400) ซึ่งเปลี่ยนสิทธิ์ของไฟล์ให้เป็น อ่านอย่างเดียว (Read-only) เมื่อ Workload D พยายามเขียนทับไฟล์ที่ถูกป้องกัน OS จะบล็อกการทำงานและเกิด PermissionError ดังนั้น Workload D จึงล้มเหลวเนื่องจาก ไม่มีสิทธิ์ในการเข้าถึงหรือแก้ไขไฟล์
